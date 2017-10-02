@@ -1,0 +1,1164 @@
+<html>
+	<head>
+		<title>ES 6 exercises</title>
+		<style>
+			body { font-family: Arial }
+			td { padding-right: 40px; }
+			.search { 
+				text-align: right;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="search">
+			<input id="search" type="text" />
+			<button id="searchButton">Search</button>
+		</div>
+		<h1>Product Summary</h1>
+		<table>
+			<tr>
+				<td>
+					<b>Category</b>
+				</td>
+				<td>
+					<b>Subcategory</b>
+				</td>
+				<td>
+					<b>Sales</b>
+				</td>
+			</tr>
+			<tr>
+				<td>Construction</td>
+				<td>Accessories</td>
+				<td>9987</td>
+			</tr>
+			<tr>
+				<td>Construction</td>
+				<td>Cordless</td>
+				<td>2814</td>
+			</tr>
+			<tr>
+				<td>Construction</td>
+				<td>Electrical</td>
+				<td>59972</td>
+			</tr>
+			<tr>
+				<td>DIY</td>
+				<td>Accessories</td>
+				<td>18279</td>
+			</tr>
+			<tr>
+				<td>DIY</td>
+				<td>Cordless</td>
+				<td>18465</td>
+			</tr>
+			<tr>
+				<td>DIY</td>
+				<td>Electrical</td>
+				<td>130821</td>
+			</tr>
+			<tr>
+				<td>DIY</td>
+				<td>Pneumatic</td>
+				<td>1754</td>
+			</tr>
+			<tr>
+				<td>Framing</td>
+				<td>Accessories</td>
+				<td>947</td>
+			</tr>
+			<tr>
+				<td>Framing</td>
+				<td>Cordless</td>
+				<td>9714</td>
+			</tr>
+			<tr>
+				<td>Framing</td>
+				<td>Pneumatic</td>
+				<td>115</td>
+			</tr>
+			<tr>
+				<td>Plumbing</td>
+				<td>Cordless</td>
+				<td>6740</td>
+			</tr>
+			<tr>
+				<td>Plumbing</td>
+				<td>Electrical</td>
+				<td>54679</td>
+			</tr>
+			<tr>
+				<td>Service Shop</td>
+				<td>Accessories</td>
+				<td>19802</td>
+			</tr>
+			<tr>
+				<td>Service Shop</td>
+				<td>Cordless</td>
+				<td>16087</td>
+			</tr>
+			<tr>
+				<td>Service Shop</td>
+				<td>Electrical</td>
+				<td>8778</td>
+			</tr>
+			<tr>
+				<td>Service Shop</td>
+				<td>Pneumatic</td>
+				<td>14041</td>
+			</tr>
+			<tr>
+				<td>Woodworking</td>
+				<td>Cordless</td>
+				<td>38580</td>
+			</tr>
+			<tr>
+				<td>Woodworking</td>
+				<td>Electrical</td>
+				<td>71011</td>
+			</tr>
+			<tr>
+				<td>Woodworking</td>
+				<td>Pneumatic</td>
+				<td>10338</td>
+			</tr>
+		</table>
+
+
+
+
+		<h1>Product Detail</h1>
+		<table>
+			<tr>
+				<td>
+					<b>Product</b>
+				</td>
+				<td>
+					<b>Category</b>
+				</td>
+				<td>
+					<b>Subcategory</b>
+				</td>
+				<td>
+					<b>Price</b>
+				</td>
+				<td>
+					<b>Stock</b>
+				</td>
+				<td>
+					<b>Sales</b>
+				</td>
+				<td>
+					<b>Profit</b>
+				</td>
+				<td>
+					<b>DateAdded</b>
+				</td>
+			</tr>
+
+			<tr>
+				<td>Black And Decker 3/8" 5-amp Variable Speed Drill With Keyless Chuck, Dr260b</td>
+				<td>DIY</td>
+				<td>Electrical</td>
+				<td>207.7</td>
+				<td>7789</td>
+				<td>1478</td>
+				<td>401216.95</td>
+				<td>2014-01-13</td>
+			</tr>
+			<tr>
+				<td>Wagner 0283022c Ht775 Heat Gun</td>
+				<td>DIY</td>
+				<td>Electrical</td>
+				<td>344.45</td>
+				<td>3152</td>
+				<td>9031</td>
+				<td>307930.2</td>
+				<td>2014-10-22</td>
+			</tr>
+			<tr>
+				<td>Aaa 300psi Air Compressor</td>
+				<td>Woodworking</td>
+				<td>Pneumatic</td>
+				<td>962.49</td>
+				<td>3407</td>
+				<td>1878</td>
+				<td>768370.65</td>
+				<td>2015-10-21</td>
+			</tr>
+			<tr>
+				<td>Black & Decker Vs Jig Saw, Js515</td>
+				<td>DIY</td>
+				<td>Electrical</td>
+				<td>723.53</td>
+				<td>8668</td>
+				<td>8206</td>
+				<td>501932.76</td>
+				<td>2016-09-08</td>
+			</tr>
+			<tr>
+				<td>Hitachi 2 Hp 4-gal Compressor</td>
+				<td>Service Shop</td>
+				<td>Pneumatic</td>
+				<td>812.49</td>
+				<td>9952</td>
+				<td>6074</td>
+				<td>637799.37</td>
+				<td>2016-04-04</td>
+			</tr>
+			<tr>
+				<td>Black & Decker 18-volt Cordless Drill, Gco18c</td>
+				<td>DIY</td>
+				<td>Cordless</td>
+				<td>144.81</td>
+				<td>7789</td>
+				<td>3583</td>
+				<td>442826.55</td>
+				<td>2015-10-14</td>
+			</tr>
+			<tr>
+				<td>Fry Technologies Cookson Elect Am33955 95/5 Lead-free Solid Wire Solder</td>
+				<td>DIY</td>
+				<td>Electrical</td>
+				<td>552.75</td>
+				<td>3739</td>
+				<td>4975</td>
+				<td>537322.65</td>
+				<td>2015-05-30</td>
+			</tr>
+			<tr>
+				<td>Campbell Hausfeld 2-1/2 Finish Nailer (16 Gauge)</td>
+				<td>Construction</td>
+				<td>Mechanical</td>
+				<td>303.33</td>
+				<td>8412</td>
+				<td>352</td>
+				<td>744138.45</td>
+				<td>2015-04-22</td>
+			</tr>
+			<tr>
+				<td>Numax 21-degree 3-1/2" Framing Nailer</td>
+				<td>Framing</td>
+				<td>Electrical</td>
+				<td>815.11</td>
+				<td>5643</td>
+				<td>995</td>
+				<td>967629.15</td>
+				<td>2016-08-04</td>
+			</tr>
+			<tr>
+				<td>Bostitch 2.5 Gallon, 150 Psi Suitcase-style Air Compressor, Btfp01012</td>
+				<td>Framing</td>
+				<td>Pneumatic</td>
+				<td>723.51</td>
+				<td>9258</td>
+				<td>115</td>
+				<td>988616</td>
+				<td>2016-04-13</td>
+			</tr>
+			<tr>
+				<td>Primefit Garage Tire Inflator With 12" Hose</td>
+				<td>Service Shop</td>
+				<td>Electrical</td>
+				<td>555.45</td>
+				<td>6471</td>
+				<td>2884</td>
+				<td>816488.23</td>
+				<td>2015-11-17</td>
+			</tr>
+			<tr>
+				<td>Home Series 3 Pc Master Kit</td>
+				<td>DIY</td>
+				<td>Electrical</td>
+				<td>749.2</td>
+				<td>8591</td>
+				<td>8753</td>
+				<td>841788.58</td>
+				<td>2014-07-30</td>
+			</tr>
+			<tr>
+				<td>Ingersoll Rand 1/2 Air Impact Wrench 231ha</td>
+				<td>Service Shop</td>
+				<td>Electrical</td>
+				<td>917.25</td>
+				<td>3839</td>
+				<td>1907</td>
+				<td>856957.42</td>
+				<td>2016-10-02</td>
+			</tr>
+			<tr>
+				<td>Buffalo Tools Pro Series 12 Piece Router Bit Set</td>
+				<td>Woodworking</td>
+				<td>Accessories</td>
+				<td>860.95</td>
+				<td>495</td>
+				<td>2119</td>
+				<td>482080.92</td>
+				<td>2015-07-13</td>
+			</tr>
+			<tr>
+				<td>Hitachi 18 V Ni-cad Cordless Driver Drill</td>
+				<td>Construction</td>
+				<td>Cordless</td>
+				<td>797.81</td>
+				<td>8056</td>
+				<td>2814</td>
+				<td>367250.09</td>
+				<td>2014-10-11</td>
+			</tr>
+			<tr>
+				<td>Rockwell Shopseries 8 Amp Variable Speed Reciprocating Saw Kit</td>
+				<td>Woodworking</td>
+				<td>Mechanical</td>
+				<td>513.93</td>
+				<td>4903</td>
+				<td>6563</td>
+				<td>9468.72</td>
+				<td>2015-09-07</td>
+			</tr>
+			<tr>
+				<td>Lincoln Industrial Grease Gun Cordless With Case</td>
+				<td>Service Shop</td>
+				<td>Cordless</td>
+				<td>853.72</td>
+				<td>8356</td>
+				<td>1014</td>
+				<td>181815.47</td>
+				<td>2014-02-26</td>
+			</tr>
+			<tr>
+				<td>Contractors Tornado Double Blade Dual Saw</td>
+				<td>Construction</td>
+				<td>Electrical</td>
+				<td>724.83</td>
+				<td>5603</td>
+				<td>2234</td>
+				<td>940611.97</td>
+				<td>2016-08-19</td>
+			</tr>
+			<tr>
+				<td>Black & Decker Smart Select Linefinder Orbital Jigsaw, Js670v</td>
+				<td>Woodworking</td>
+				<td>Electrical</td>
+				<td>686.78</td>
+				<td>5581</td>
+				<td>3770</td>
+				<td>353859.28</td>
+				<td>2016-06-07</td>
+			</tr>
+			<tr>
+				<td>Powryte 1/2" Rocking Dog Air Impact Wrench, 100103a</td>
+				<td>Service Shop</td>
+				<td>Mechanical</td>
+				<td>635.1</td>
+				<td>4450</td>
+				<td>1465</td>
+				<td>439685.62</td>
+				<td>2016-07-29</td>
+			</tr>
+			<tr>
+				<td>Fry Technologies Cookson Elect Am32406 General Purpose Acid Core Solder</td>
+				<td>Service Shop</td>
+				<td>Electrical</td>
+				<td>66.08</td>
+				<td>3148</td>
+				<td>8110</td>
+				<td>69501.53</td>
+				<td>2016-02-29</td>
+			</tr>
+			<tr>
+				<td>Bostitch 18v Lithium Drill/impact Combo Kit And Bonus 25-piece Impact Set Bundle</td>
+				<td>DIY</td>
+				<td>Accessories</td>
+				<td>949.66</td>
+				<td>9941</td>
+				<td>2411</td>
+				<td>564753.7</td>
+				<td>2015-05-09</td>
+			</tr>
+			<tr>
+				<td>Superior Tool 2" Pvc Pipe Cutter</td>
+				<td>Plumbing</td>
+				<td>Electrical</td>
+				<td>663.54</td>
+				<td>4770</td>
+				<td>1420</td>
+				<td>510127.1</td>
+				<td>2016-01-02</td>
+			</tr>
+			<tr>
+				<td>Dremel Universal Multi-knife Blade, Mm430</td>
+				<td>DIY</td>
+				<td>Electrical</td>
+				<td>865.72</td>
+				<td>4172</td>
+				<td>9328</td>
+				<td>542498.73</td>
+				<td>2015-06-01</td>
+			</tr>
+			<tr>
+				<td>Bosch/rotozip/skil 2354-01 4-volt Lithium Ion Cordless Screwdriver</td>
+				<td>DIY</td>
+				<td>Cordless</td>
+				<td>703.51</td>
+				<td>4989</td>
+				<td>2420</td>
+				<td>10032.68</td>
+				<td>2016-05-14</td>
+			</tr>
+			<tr>
+				<td>Fein Asb 14 + Afmm 14 14.4v, 4ah, Cordless Fmm + Hammer Drill</td>
+				<td>DIY</td>
+				<td>Cordless</td>
+				<td>459.15</td>
+				<td>4029</td>
+				<td>5608</td>
+				<td>899325.72</td>
+				<td>2015-05-27</td>
+			</tr>
+			<tr>
+				<td>Hitachi 9" 6 Tpi Wood/nail Reciprocating Blade, 25pk</td>
+				<td>Construction</td>
+				<td>Electrical</td>
+				<td>77.22</td>
+				<td>7131</td>
+				<td>389</td>
+				<td>96714.39</td>
+				<td>2015-10-21</td>
+			</tr>
+			<tr>
+				<td>Bostitch Prozhoze, 1/4" X 100, Hopb14100</td>
+				<td>Service Shop</td>
+				<td>Electrical</td>
+				<td>872.01</td>
+				<td>169</td>
+				<td>3813</td>
+				<td>196706.86</td>
+				<td>2015-07-07</td>
+			</tr>
+			<tr>
+				<td>Arrow Fastener Powershot Heavy Duty Forward Action Stapler</td>
+				<td>Construction</td>
+				<td>Electrical</td>
+				<td>201.11</td>
+				<td>2697</td>
+				<td>9116</td>
+				<td>842070.46</td>
+				<td>2016-04-30</td>
+			</tr>
+			<tr>
+				<td>Campbell Hausfeld 17-piece Pneumatic Accessory Kit</td>
+				<td>Woodworking</td>
+				<td>Electrical</td>
+				<td>762.2</td>
+				<td>1065</td>
+				<td>8500</td>
+				<td>123922.19</td>
+				<td>2015-08-20</td>
+			</tr>
+			<tr>
+				<td>Black & Decker Matrix Combo Kit, 20v Drill And Trim Saw, Bdcdmt120ts</td>
+				<td>Woodworking</td>
+				<td>Electrical</td>
+				<td>764.75</td>
+				<td>6686</td>
+				<td>9079</td>
+				<td>379814.04</td>
+				<td>2014-05-04</td>
+			</tr>
+			<tr>
+				<td>Worx Semi Automatic Sd Driver, Wx254l</td>
+				<td>DIY</td>
+				<td>Electrical</td>
+				<td>409.52</td>
+				<td>8987</td>
+				<td>2688</td>
+				<td>807279.41</td>
+				<td>2017-06-25</td>
+			</tr>
+			<tr>
+				<td>Fein Asb 14 + Afmm 14 14.4v, 4ah, Cordless Fmm + Hammer Drill</td>
+				<td>DIY</td>
+				<td>Cordless</td>
+				<td>775.31</td>
+				<td>4598</td>
+				<td>6854</td>
+				<td>470103.22</td>
+				<td>2017-05-15</td>
+			</tr>
+			<tr>
+				<td>Campbell Hausfeld Air Compressor Oil - 16 Ounce</td>
+				<td>Service Shop</td>
+				<td>Pneumatic</td>
+				<td>798.11</td>
+				<td>358</td>
+				<td>7207</td>
+				<td>387965.95</td>
+				<td>2016-05-01</td>
+			</tr>
+			<tr>
+				<td>Makita Btl061 Lxt 18 Volt Angle Drill Kit</td>
+				<td>Construction</td>
+				<td>Electrical</td>
+				<td>972.83</td>
+				<td>9213</td>
+				<td>4647</td>
+				<td>612497.59</td>
+				<td>2017-05-24</td>
+			</tr>
+			<tr>
+				<td>Warp Brothers Fcp-12 Flex-o-glaze Cleaner And Polisher - 12 Oz.</td>
+				<td>Woodworking</td>
+				<td>Electrical</td>
+				<td>605.62</td>
+				<td>4408</td>
+				<td>4096</td>
+				<td>211996.51</td>
+				<td>2015-06-10</td>
+			</tr>
+			<tr>
+				<td>Black & Decker 1375w Heat Gun</td>
+				<td>Woodworking</td>
+				<td>Electrical</td>
+				<td>676.59</td>
+				<td>8403</td>
+				<td>5218</td>
+				<td>416543.18</td>
+				<td>2015-11-01</td>
+			</tr>
+			<tr>
+				<td>Warp Brothers Fcp-12 Flex-o-glaze Cleaner And Polisher - 12 Oz.</td>
+				<td>Woodworking</td>
+				<td>Electrical</td>
+				<td>519.71</td>
+				<td>1491</td>
+				<td>529</td>
+				<td>361169.52</td>
+				<td>2016-07-12</td>
+			</tr>
+			<tr>
+				<td>Acme Automotive Inline Adj Air Regulator</td>
+				<td>DIY</td>
+				<td>Electrical</td>
+				<td>362.86</td>
+				<td>9422</td>
+				<td>8247</td>
+				<td>747871.43</td>
+				<td>2016-12-15</td>
+			</tr>
+			<tr>
+				<td>Cherry Gel Pumice Hand Cleaner, Cherry, 1 Gal</td>
+				<td>DIY</td>
+				<td>Electrical</td>
+				<td>757.69</td>
+				<td>5800</td>
+				<td>8497</td>
+				<td>728437.74</td>
+				<td>2014-10-29</td>
+			</tr>
+			<tr>
+				<td>Freeman Pf3p6galck Freeman Ultimate Finishing Kit With 6 Gallon Compressor, 3 Nailers, Canvas Carry</td>
+				<td>Woodworking</td>
+				<td>Pneumatic</td>
+				<td>17.11</td>
+				<td>174</td>
+				<td>3418</td>
+				<td>566471.93</td>
+				<td>2016-03-09</td>
+			</tr>
+			<tr>
+				<td>Swisher 28 Ton 8.75 Gross Torque Log Splitter, Lsrb875281350</td>
+				<td>DIY</td>
+				<td>Electrical</td>
+				<td>776.11</td>
+				<td>6503</td>
+				<td>7676</td>
+				<td>414629.97</td>
+				<td>2016-05-30</td>
+			</tr>
+			<tr>
+				<td>Hitachi 12v Peak 2 Tool Li-ion Drill Combo Kit With Carrying Bag</td>
+				<td>Service Shop</td>
+				<td>Electrical</td>
+				<td>236.75</td>
+				<td>4010</td>
+				<td>3164</td>
+				<td>365563.33</td>
+				<td>2016-03-15</td>
+			</tr>
+			<tr>
+				<td>Stalwart 8-in-1 Multipurpose Lighted Magnetic Driver With Bits</td>
+				<td>DIY</td>
+				<td>Electrical</td>
+				<td>245.06</td>
+				<td>6595</td>
+				<td>4560</td>
+				<td>887233.43</td>
+				<td>2016-02-12</td>
+			</tr>
+			<tr>
+				<td>Buffalo Tools Pro Series Angle Grinding Kit</td>
+				<td>DIY</td>
+				<td>Electrical</td>
+				<td>455.5</td>
+				<td>1562</td>
+				<td>4133</td>
+				<td>708642.08</td>
+				<td>2015-02-09</td>
+			</tr>
+			<tr>
+				<td>Allied Tools 72-piece Rotary Tool Set</td>
+				<td>Construction</td>
+				<td>Accessories</td>
+				<td>253.68</td>
+				<td>9914</td>
+				<td>9987</td>
+				<td>102559.41</td>
+				<td>2015-01-12</td>
+			</tr>
+			<tr>
+				<td>Skil 10 Count U Shank Jigsaw Blade Set 94910</td>
+				<td>Framing</td>
+				<td>Accessories</td>
+				<td>302.68</td>
+				<td>1006</td>
+				<td>947</td>
+				<td>541335.1</td>
+				<td>2017-01-17</td>
+			</tr>
+			<tr>
+				<td>Black & Decker 18v Cordless Drill</td>
+				<td>Framing</td>
+				<td>Cordless</td>
+				<td>461.99</td>
+				<td>3925</td>
+				<td>9714</td>
+				<td>641568.74</td>
+				<td>2016-12-03</td>
+			</tr>
+			<tr>
+				<td>Porter Cable 1/2 18v Cordless Driver</td>
+				<td>Service Shop</td>
+				<td>Cordless</td>
+				<td>182.42</td>
+				<td>7004</td>
+				<td>8844</td>
+				<td>729018.49</td>
+				<td>2015-11-05</td>
+			</tr>
+			<tr>
+				<td>Black & Decker 5.2a 3.25" Planer Kit, 7698k</td>
+				<td>DIY</td>
+				<td>Electrical</td>
+				<td>442.97</td>
+				<td>8876</td>
+				<td>8633</td>
+				<td>861328.24</td>
+				<td>2014-07-27</td>
+			</tr>
+			<tr>
+				<td>Skil 2364-02 7.2-volt Lithium-ion 2-speed Drill/driver</td>
+				<td>Service Shop</td>
+				<td>Electrical</td>
+				<td>520.48</td>
+				<td>8351</td>
+				<td>3164</td>
+				<td>641092.03</td>
+				<td>2015-07-08</td>
+			</tr>
+			<tr>
+				<td>Ultra Steel 6v Cordless Drill</td>
+				<td>Woodworking</td>
+				<td>Cordless</td>
+				<td>931.69</td>
+				<td>2998</td>
+				<td>8619</td>
+				<td>97903.99</td>
+				<td>2016-03-07</td>
+			</tr>
+			<tr>
+				<td>Dremel Circle Cutter Attachment, 678-01</td>
+				<td>Construction</td>
+				<td>Electrical</td>
+				<td>839.13</td>
+				<td>5039</td>
+				<td>3538</td>
+				<td>562217.25</td>
+				<td>2017-03-27</td>
+			</tr>
+			<tr>
+				<td>Mr. Heater Stay A While Deluxe</td>
+				<td>Woodworking</td>
+				<td>Electrical</td>
+				<td>964.25</td>
+				<td>8276</td>
+				<td>2795</td>
+				<td>95173.06</td>
+				<td>2016-11-24</td>
+			</tr>
+			<tr>
+				<td>Black & Decker Matrix Oscillating Head Attachment, Bdcmto</td>
+				<td>Service Shop</td>
+				<td>Electrical</td>
+				<td>879.78</td>
+				<td>7138</td>
+				<td>8894</td>
+				<td>268734.69</td>
+				<td>2015-06-02</td>
+			</tr>
+			<tr>
+				<td>Diteq Gasket Core Drills Accessories</td>
+				<td>Construction</td>
+				<td>Electrical</td>
+				<td>942.77</td>
+				<td>2251</td>
+				<td>5301</td>
+				<td>60051.82</td>
+				<td>2014-08-29</td>
+			</tr>
+			<tr>
+				<td>Buffalo Tools Ps07499 24-piece Router Bit Set</td>
+				<td>Woodworking</td>
+				<td>Accessories</td>
+				<td>422.64</td>
+				<td>449</td>
+				<td>6146</td>
+				<td>256275.71</td>
+				<td>2014-02-03</td>
+			</tr>
+			<tr>
+				<td>Chicago Power Tools Power Drill Accessory Set, 75-piece</td>
+				<td>Service Shop</td>
+				<td>Accessories</td>
+				<td>701.33</td>
+				<td>8079</td>
+				<td>5305</td>
+				<td>64196.02</td>
+				<td>2017-08-12</td>
+			</tr>
+			<tr>
+				<td>Dremel Universal Multi-knife Blade, Mm430</td>
+				<td>Service Shop</td>
+				<td>Electrical</td>
+				<td>180.72</td>
+				<td>7434</td>
+				<td>582</td>
+				<td>848874.03</td>
+				<td>2016-02-14</td>
+			</tr>
+			<tr>
+				<td>Hitachi 3.25 Framing Nailers Nr83a2</td>
+				<td>DIY</td>
+				<td>Electrical</td>
+				<td>370.1</td>
+				<td>7835</td>
+				<td>7175</td>
+				<td>929924.51</td>
+				<td>2016-11-13</td>
+			</tr>
+			<tr>
+				<td>California Air Tools 4.6 Gallon Ultra Quiet And Oil-free 2.0 Hp Aluminum Twin Tank Air Compressor</td>
+				<td>Plumbing</td>
+				<td>Pneumatic</td>
+				<td>263.72</td>
+				<td>6377</td>
+				<td>9583</td>
+				<td>756161.5</td>
+				<td>2017-04-25</td>
+			</tr>
+			<tr>
+				<td>Blazer Products 189-2072 Clear Pocket Torch Pb207 Black</td>
+				<td>DIY</td>
+				<td>Electrical</td>
+				<td>522.28</td>
+				<td>2726</td>
+				<td>5250</td>
+				<td>245758.02</td>
+				<td>2015-07-18</td>
+			</tr>
+			<tr>
+				<td>10-count 10" Glue Sticks</td>
+				<td>DIY</td>
+				<td>Electrical</td>
+				<td>116.21</td>
+				<td>7126</td>
+				<td>3349</td>
+				<td>575505.34</td>
+				<td>2016-08-11</td>
+			</tr>
+			<tr>
+				<td>Ingersoll Rand Impact 1/2</td>
+				<td>DIY</td>
+				<td>Electrical</td>
+				<td>563.38</td>
+				<td>8500</td>
+				<td>1721</td>
+				<td>757841.89</td>
+				<td>2016-03-21</td>
+			</tr>
+			<tr>
+				<td>Lincoln Lubrication Ac2440 120-volt Corded Grease Gun</td>
+				<td>Construction</td>
+				<td>Electrical</td>
+				<td>629.41</td>
+				<td>8129</td>
+				<td>6752</td>
+				<td>262003.93</td>
+				<td>2014-05-22</td>
+			</tr>
+			<tr>
+				<td>Plews 05-025 4-inch Needle Nose Grease Gun Adapter</td>
+				<td>Service Shop</td>
+				<td>Electrical</td>
+				<td>626.84</td>
+				<td>4887</td>
+				<td>9520</td>
+				<td>84542.09</td>
+				<td>2014-11-11</td>
+			</tr>
+			<tr>
+				<td>Plews & Edelmann Lever-action Grease Gun, 6" Extension, 6, 000psi, 14oz Cartridge</td>
+				<td>Construction</td>
+				<td>Electrical</td>
+				<td>287.64</td>
+				<td>6713</td>
+				<td>5411</td>
+				<td>705311.73</td>
+				<td>2017-07-11</td>
+			</tr>
+			<tr>
+				<td>10-count 10" Glue Sticks</td>
+				<td>Woodworking</td>
+				<td>Electrical</td>
+				<td>459.47</td>
+				<td>4418</td>
+				<td>9040</td>
+				<td>484563.43</td>
+				<td>2014-06-21</td>
+			</tr>
+			<tr>
+				<td>Kawasaki 10 Piece Screw Extractor And Drill Bit Set</td>
+				<td>Woodworking</td>
+				<td>Accessories</td>
+				<td>586.1</td>
+				<td>2815</td>
+				<td>6386</td>
+				<td>266106.15</td>
+				<td>2014-05-10</td>
+			</tr>
+			<tr>
+				<td>Dremel Sanding/grinding Mini Accessory Kit, 686-02</td>
+				<td>DIY</td>
+				<td>Electrical</td>
+				<td>749.11</td>
+				<td>8374</td>
+				<td>7812</td>
+				<td>300439.43</td>
+				<td>2015-08-11</td>
+			</tr>
+			<tr>
+				<td>Vim Products 12mm Triple Square Bit</td>
+				<td>DIY</td>
+				<td>Electrical</td>
+				<td>910.91</td>
+				<td>5474</td>
+				<td>9694</td>
+				<td>428342.99</td>
+				<td>2016-04-07</td>
+			</tr>
+			<tr>
+				<td>Porter Cable-piece15cslk 7-1/4" 15-amp Circular Saw</td>
+				<td>Service Shop</td>
+				<td>Electrical</td>
+				<td>255.85</td>
+				<td>6014</td>
+				<td>6036</td>
+				<td>669584.93</td>
+				<td>2015-01-09</td>
+			</tr>
+			<tr>
+				<td>Apex Tool Group, Llc-tools 8125n Soldering Gun Tip</td>
+				<td>Construction</td>
+				<td>Electrical</td>
+				<td>81.05</td>
+				<td>1527</td>
+				<td>1099</td>
+				<td>626270.85</td>
+				<td>2015-07-24</td>
+			</tr>
+			<tr>
+				<td>Dremel Cleaning/polishing Mini Accessory Kit, 684-02</td>
+				<td>Woodworking</td>
+				<td>Electrical</td>
+				<td>737.13</td>
+				<td>7521</td>
+				<td>8050</td>
+				<td>172484.74</td>
+				<td>2017-02-02</td>
+			</tr>
+			<tr>
+				<td>Buffalo Tools Ps07499 24-piece Router Bit Set</td>
+				<td>Woodworking</td>
+				<td>Accessories</td>
+				<td>338.79</td>
+				<td>6945</td>
+				<td>9269</td>
+				<td>794490.29</td>
+				<td>2015-12-18</td>
+			</tr>
+			<tr>
+				<td>Buffalo Tools Ps07215 18-volt Cordless Drill Kit</td>
+				<td>Woodworking</td>
+				<td>Cordless</td>
+				<td>331.1</td>
+				<td>1346</td>
+				<td>466</td>
+				<td>247613.06</td>
+				<td>2017-09-12</td>
+			</tr>
+			<tr>
+				<td>Master Magnetics 7269 36-inch Retrieval Magnet</td>
+				<td>DIY</td>
+				<td>Electrical</td>
+				<td>456.33</td>
+				<td>3224</td>
+				<td>1495</td>
+				<td>279247.96</td>
+				<td>2014-12-03</td>
+			</tr>
+			<tr>
+				<td>Bostitch 26 Gallon, 150 Psi, 1.8hp Air Compressor , Btfp02028</td>
+				<td>DIY</td>
+				<td>Pneumatic</td>
+				<td>276.21</td>
+				<td>2832</td>
+				<td>1754</td>
+				<td>465843.02</td>
+				<td>2015-11-01</td>
+			</tr>
+			<tr>
+				<td>Bosch 5580-01 7-1/4" 13 Amp Skilsaw Circular Saw</td>
+				<td>Woodworking</td>
+				<td>Electrical</td>
+				<td>670.49</td>
+				<td>4137</td>
+				<td>1740</td>
+				<td>427952.79</td>
+				<td>2016-11-29</td>
+			</tr>
+			<tr>
+				<td>Stanley Tr45 Light Duty Staple Gun</td>
+				<td>DIY</td>
+				<td>Electrical</td>
+				<td>279.87</td>
+				<td>3094</td>
+				<td>5606</td>
+				<td>105908.42</td>
+				<td>2015-09-13</td>
+			</tr>
+			<tr>
+				<td>Black & Decker 2.4v Direct Plug Screwdriver, Dp240</td>
+				<td>Service Shop</td>
+				<td>Electrical</td>
+				<td>854.95</td>
+				<td>2006</td>
+				<td>2723</td>
+				<td>450087.61</td>
+				<td>2017-08-13</td>
+			</tr>
+			<tr>
+				<td>Bosch Pl1682 3-1/4" 6-amp Planer</td>
+				<td>DIY</td>
+				<td>Electrical</td>
+				<td>755.47</td>
+				<td>5206</td>
+				<td>1307</td>
+				<td>920924.64</td>
+				<td>2017-03-28</td>
+			</tr>
+			<tr>
+				<td>Skil 2364-02 7.2-volt Lithium-ion 2-speed Drill/driver</td>
+				<td>DIY</td>
+				<td>Electrical</td>
+				<td>108.38</td>
+				<td>7408</td>
+				<td>184</td>
+				<td>8466.46</td>
+				<td>2014-06-24</td>
+			</tr>
+			<tr>
+				<td>Bosch Pr20evsk Colt Variable Speed Palm Router Kit</td>
+				<td>Construction</td>
+				<td>Electrical</td>
+				<td>190.28</td>
+				<td>8725</td>
+				<td>8765</td>
+				<td>526560.78</td>
+				<td>2016-03-07</td>
+			</tr>
+			<tr>
+				<td>Legacy Manufacturing Leghfz3850yw2 Flexzilla 3/8in X 50yd Yellow Air Hose With 1/4 Inch Mnpt Ends</td>
+				<td>Framing</td>
+				<td>Electrical</td>
+				<td>179.39</td>
+				<td>1956</td>
+				<td>2334</td>
+				<td>463856.48</td>
+				<td>2015-01-25</td>
+			</tr>
+			<tr>
+				<td>Bosch 4100-09 10" 4.4 Hp Worksite Table Saw</td>
+				<td>Framing</td>
+				<td>Electrical</td>
+				<td>574.44</td>
+				<td>3541</td>
+				<td>3654</td>
+				<td>471780.56</td>
+				<td>2015-09-24</td>
+			</tr>
+			<tr>
+				<td>Professional Woodworker 18 Gauge Brad Nailer With 2-gallon 100 Psi Twin Stack Compressor Combo Kit</td>
+				<td>Service Shop</td>
+				<td>Pneumatic</td>
+				<td>770.67</td>
+				<td>446</td>
+				<td>760</td>
+				<td>751241.09</td>
+				<td>2015-06-20</td>
+			</tr>
+			<tr>
+				<td>Eclipse 900-250 Solder Aid Tool Set W/reverse Tweezers And Heat Sink</td>
+				<td>DIY</td>
+				<td>Accessories</td>
+				<td>565.02</td>
+				<td>9863</td>
+				<td>9395</td>
+				<td>785836.08</td>
+				<td>2014-01-30</td>
+			</tr>
+			<tr>
+				<td>Edsal Heavy-duty Workbench, Ub400</td>
+				<td>Service Shop</td>
+				<td>Electrical</td>
+				<td>568.01</td>
+				<td>6237</td>
+				<td>809</td>
+				<td>513750.55</td>
+				<td>2014-10-25</td>
+			</tr>
+			<tr>
+				<td>Dixon Valve Air Chief Industrial Quick Connect Fittings - Dc25 Septls238dc25</td>
+				<td>Woodworking</td>
+				<td>Electrical</td>
+				<td>335.27</td>
+				<td>3021</td>
+				<td>7388</td>
+				<td>611705.02</td>
+				<td>2014-05-19</td>
+			</tr>
+			<tr>
+				<td>Eclipse 900-206 Helping Hands With Solder Iron Holder - 2.5x</td>
+				<td>Construction</td>
+				<td>Electrical</td>
+				<td>162.2</td>
+				<td>2272</td>
+				<td>9625</td>
+				<td>365726.04</td>
+				<td>2015-10-31</td>
+			</tr>
+			<tr>
+				<td>Primefit 30-piece Air Compressor Accessory Kit</td>
+				<td>Woodworking</td>
+				<td>Pneumatic</td>
+				<td>524.37</td>
+				<td>9442</td>
+				<td>5042</td>
+				<td>453610.11</td>
+				<td>2015-06-10</td>
+			</tr>
+			<tr>
+				<td>Bosch Power Tools 29 Piece High Speed Steel Drill Set With Metal Case 96029</td>
+				<td>Service Shop</td>
+				<td>Accessories</td>
+				<td>635.85</td>
+				<td>9606</td>
+				<td>8625</td>
+				<td>992112.8</td>
+				<td>2016-03-31</td>
+			</tr>
+			<tr>
+				<td>Numax 16-gauge Straight Finish Nailer</td>
+				<td>Construction</td>
+				<td>Electrical</td>
+				<td>751.25</td>
+				<td>3894</td>
+				<td>2743</td>
+				<td>575147.15</td>
+				<td>2017-05-10</td>
+			</tr>
+			<tr>
+				<td>Skil 4570-01 18-volt Jigsaw</td>
+				<td>Woodworking</td>
+				<td>Electrical</td>
+				<td>490.06</td>
+				<td>5693</td>
+				<td>4243</td>
+				<td>222300.56</td>
+				<td>2016-04-08</td>
+			</tr>
+			<tr>
+				<td>Kawasaki 10 Piece Screw Extractor And Drill Bit Set</td>
+				<td>Service Shop</td>
+				<td>Accessories</td>
+				<td>154.21</td>
+				<td>7683</td>
+				<td>5872</td>
+				<td>186077.45</td>
+				<td>2014-01-30</td>
+			</tr>
+			<tr>
+				<td>Black & Decker 18v Cordless Drill Set, Gco18sfb</td>
+				<td>Service Shop</td>
+				<td>Cordless</td>
+				<td>839.06</td>
+				<td>6047</td>
+				<td>6229</td>
+				<td>239638.84</td>
+				<td>2016-10-24</td>
+			</tr>
+			<tr>
+				<td>Irwin 30-piece Drive Set, 1885554</td>
+				<td>DIY</td>
+				<td>Accessories</td>
+				<td>255.36</td>
+				<td>3041</td>
+				<td>6473</td>
+				<td>252308.88</td>
+				<td>2014-01-28</td>
+			</tr>
+			<tr>
+				<td>Lincoln Industrial Grease Gun Cordless With Case</td>
+				<td>Plumbing</td>
+				<td>Cordless</td>
+				<td>540</td>
+				<td>5149</td>
+				<td>6740</td>
+				<td>709659.38</td>
+				<td>2017-07-28</td>
+			</tr>
+			<tr>
+				<td>Surebonder Mini Dual Temperature Glue Gun</td>
+				<td>DIY</td>
+				<td>Electrical</td>
+				<td>163.22</td>
+				<td>461</td>
+				<td>1023</td>
+				<td>54901.19</td>
+				<td>2016-01-18</td>
+			</tr>
+		</table>
+		
+		<script src="ES6.js"></script>
+		
+	</body>
+</html>
