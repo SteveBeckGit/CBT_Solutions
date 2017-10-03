@@ -31,7 +31,7 @@ Loop through the Array to log each category, subcategory and total to the consol
 */
 
 var table2 = populateProductDetailArray();
-window.onload = listTotalSalesBycategory("Woodworking");
+window.onload = listAdjustedCostBysubcategory("DIY", "Electrical", 10);
 
 
 function listProductTotalsBysubcategory()
@@ -155,8 +155,8 @@ function listTotalSalesBycategory(Category)
 			if(counter < 1)
 			{				
 				loggingArray.push({category: products[i].category,
-				subcategory: products[i].subcategory,
-				sales : products[i].sales});							
+									subcategory: products[i].subcategory,
+									sales : products[i].sales});							
 			}
 		}
 				
@@ -180,12 +180,43 @@ Write the result to the console
 */
 
 
+function listAdjustedCostBysubcategory(Category, Subcategory, percentInflation)
+{
+	products = table2;
+	var calcObject;
+	var cost;
+	var inflatedCost;
+	var loggingObject;
+	
+	//Populate an object with all required details
+	for(let i = 0; i < products.length; i++)
+	{
+		if(products[i].category.includes(Category) && products[i].subcategory.includes(Subcategory))
+		{
+			if(calcObject == null)
+			{
+				calcObject = {category: products[i].category,
+									subcategory: products[i].subcategory,
+									price: products[i].price,
+									stock: products[i].stock,
+									profit: products[i].profit};
+			}
+			else
+			{
+				calcObject.price += products[i].price;
+				calcObject.stock += products[i].stock;
+				calcObject.profit += products[i].profit;
+				
+			}
+		}
+	}
+	//Do calculations
 
-
-
-
-
-
+	cost = calcObject.price - calcObject.profit * calcObject.stock;
+	inflatedCost = cost + (cost * (percentInflation/100));
+	loggingObject = {Category: calcObject.category, Subcategory: calcObject.subcategory, costOfStock: cost, costOfStockWithInflation:inflatedCost};
+	console.log(loggingObject);
+}
 
 
 /* Exercise 4
