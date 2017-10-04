@@ -30,8 +30,9 @@ If you have 2 categories with 2 subcategories each, your function could return
 Loop through the Array to log each category, subcategory and total to the console.
 */
 
+var table1 = populateProductSummaryArray();
 var table2 = populateProductDetailArray();
-window.onload = listAdjustedCostBysubcategory("DIY", "Electrical", 10);
+window.onload = listMissingProductLines();
 
 
 function listProductTotalsBysubcategory()
@@ -76,15 +77,38 @@ function listProductTotalsBysubcategory()
 
 }
 
+function populateProductSummaryArray()
+{
+	//Gets the table
+	var table = document.getElementsByTagName('table')[0];
+	//Gets the rows
+	var rows = table.children[0].children;
+
+	var array=[];
+	//Populate Array with Product Objects
+	for(let i = 1; i < rows.length; i++)
+	{
+		var arr = [];
+		
+			arr = {
+					category: rows[i].children[0].textContent,
+					subcategory: rows[i].children[1].textContent,
+					sales: Number.parseInt(rows[i].children[2].textContent)
+					};
+			
+			array.push(arr);
+		
+	}
+
+	return array
+}
+
 function populateProductDetailArray()
 {
 	//Gets the table
 	var table = document.getElementsByTagName('table')[1];
 	//Gets the rows
 	var rows = table.children[0].children;
-	//The 2 Arrays to populate
-	var tableValues= [];
-	var loggingArray = [];
 
 	var array=[];
 	//Populate Array with Product Objects
@@ -230,7 +254,34 @@ Construction / Electrical reports a sales total, but has no corresponding detail
 DIY / Accessories reports a sales total, but has no corresponding detail.
 */
 
-
+function listRedundantSalesTotals()
+{
+	var missingItems = [];
+	
+	for(let i = 1; i < table1.length; i++)
+	{
+		var matchCount = 0;
+		for(let j = 1; j < table2.length; j++)
+		{
+			if(table1[i].category == table2[j].category && table1[i].subcategory == table2[j].subcategory )
+			{
+				matchCount ++;
+				break;
+			}
+		
+		}
+		if(matchCount < 1)
+		{
+			missingItems.push(table1[i].category+" / "+table1[i].subcategory+" reports a sales total, but has no corresponding detail.");
+		}
+		
+	}
+	for(let i = 0; i < missingItems.length; i++)
+	{
+		console.log(missingItems[i]);
+	}
+	
+}
 
 
 
@@ -250,7 +301,32 @@ listMissingProductLines()
 "Hitachi 18 V Ni-cad Cordless Driver Drill", "Construction", "Cordless", 797.81, 8056, 2814, 367250.09, 2014-10-11
 */
 
-
+function listMissingProductLines()
+{
+	
+	
+	for(let i = 1; i < table2.length; i++)
+	{
+		var matchCount = 0;
+		for(let j = 1; j < table1.length; j++)
+		{
+			if(table1[j].category == table2[i].category && table1[j].subcategory == table2[i].subcategory )
+			{
+				matchCount ++;
+				break;
+			}
+		
+		}
+		if(matchCount < 1)
+		{
+			console.log(table2[i].product+","+table2[i].category+","+table2[i].subcategory+","+table2[i].price+","
+						+table2[i].stock+","+table2[i].sales+","+table2[i].profit+","+table2[i].dateAdded);
+		}
+		
+	}
+	
+	
+}
 
 
 
