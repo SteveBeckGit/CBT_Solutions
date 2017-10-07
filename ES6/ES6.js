@@ -32,7 +32,7 @@ Loop through the Array to log each category, subcategory and total to the consol
 
 var table1 = populateProductSummaryArray();
 var table2 = populateProductDetailArray();
-window.onload = listMissingProductLines();
+window.onload = search("E","startsWith", true);
 
 
 function listProductTotalsBysubcategory()
@@ -56,7 +56,7 @@ function listProductTotalsBysubcategory()
 			for(let j = 0; j < loggingArray.length; j++)
 			{
 				//If an object matches add 1 to the Total
-				if(JSON.stringify(loggingArray[j]).includes(tableValues[i].category) && JSON.stringify(loggingArray[j]).includes(tableValues[i].subcategory))
+				if(loggingArray[j].category.includes(tableValues[i].category) && loggingArray[j].subcategory.includes(tableValues[i].subcategory))
 				{
 					loggingArray[j].Total ++;
 					//Counter increments to indicate that a match was found
@@ -73,7 +73,10 @@ function listProductTotalsBysubcategory()
 		}
 	}
 
-	console.log(loggingArray);
+	for(let i = 0; i < loggingArray.length; i++)
+	{
+		console.log(loggingArray[i]);
+	}
 
 }
 
@@ -351,6 +354,54 @@ countProductDuplicates()
 */
 
 
+function countProductDuplicates()
+{
+	var loggingArray = [];
+	tableValues = table2;
+
+	for(let i = 0; i < tableValues.length; i++)
+	{
+		//If the array is empty add first entry
+		if(loggingArray.length == 0)
+		{
+			loggingArray.push({product: tableValues[i].product,							
+							Total : 1});
+		}
+		else
+		{
+			var counter = 0;
+			//Loop over the final array to count entries
+			for(let j = 0; j < loggingArray.length; j++)
+			{
+				//If an object matches add 1 to the Total
+				if(loggingArray[j].product.includes(tableValues[i].product))
+				{
+					loggingArray[j].Total ++;
+					//Counter increments to indicate that a match was found
+					counter ++;
+				}
+			}
+			//If no matches were found add a new entry
+			if(counter < 1)
+			{
+				loggingArray.push({product: tableValues[i].product,
+				
+				Total : 1});
+			}
+		}
+	}
+
+	for(let i = 0; i < loggingArray.length; i++)
+	{
+		
+		if(loggingArray[i].Total > 1)
+		{
+			console.log(loggingArray[i].product + " has "+ loggingArray[i].Total+ " duplicates." );
+		}
+	}
+				
+	
+}
 
 
 
@@ -369,7 +420,21 @@ productsToJson(category, subcategory)
 productsToJson("DIY", "Electrical")			
 */
 
+function productsToJson(Category, Subcategory)
+{
+	var productDetails = [];
+	for(let i = 0; i < table2.length; i++)
+	{
+		if(table2[i].category.includes(Category) && table2[i].subcategory.includes(Subcategory))
+		{
+			productDetails.push(table2[i])	;
+		}
+	}
 
+
+		var JSONObj = {productDetails};
+		console.log(JSON.stringify(JSONObj));
+}
 
 
 
@@ -402,7 +467,59 @@ Write it to the console.
 */
 
 
+function listCorrectedsubcategorySales()
+{
+	var loggingArray = [];
+	tableValues = table2;
 
+	for(let i = 0; i < tableValues.length; i++)
+	{
+		//If the array is empty add first entry
+		if(loggingArray.length == 0)
+		{
+			loggingArray.push({product: tableValues[i].product,
+				category: tableValues[i].category,	
+				subcategory: tableValues[i].subcategory,	
+				sales: tableValues[i].sales,
+				Total: tableValues[i].Total});		
+							
+		}
+		else
+		{
+			var counter = 0;
+			//Loop over the final array to count entries
+			for(let j = 0; j < loggingArray.length; j++)
+			{
+				//If an object matches add 1 to the Total
+				if(loggingArray[j].product.includes(tableValues[i].product))
+				{
+					loggingArray[j].sales += tableValues[i].sales;
+					loggingArray[j].Total ++;
+					//Counter increments to indicate that a match was found
+					counter ++;
+				}
+			}
+			//If no matches were found add a new entry
+			if(counter < 1)
+			{
+				loggingArray.push({product: tableValues[i].product,
+					category: tableValues[i].category,	
+					subcategory: tableValues[i].subcategory,	
+					sales: tableValues[i].sales,
+					Total: 1});
+			}
+		}
+	}
+	
+	for(let i = 0; i < loggingArray.length; i++)
+	{
+		
+		if(loggingArray[i].Total > 1)
+		{
+			console.log( loggingArray[i].product+"  |  "+ loggingArray[i].category+"  |  "+ loggingArray[i].subcategory+"  |  "+ loggingArray[i].sales);
+		}
+	}
+}
 
 
 
@@ -495,7 +612,121 @@ Searching for subcategories stariting with "Elec" (case sensitive)
 </dl>
 */
 
+function search(searchTerm = string, searchType = string, isCaseSensitive = Boolean )
+{
+	var loggingArray = [];
+	tableValues = table2;
+	if(searchTerm == "")
+	{
+		loggingArray = tableValues;
+	}
+	else
+	{
+		if(searchType.toUpperCase()  == "STARTSWITH")
+		{
+			var count = searchTerm.length;
+			for(let i = 0; i < tableValues.length; i++)
+			{
+				var str = tableValues[i].subcategory;
+			
+				if(isCaseSensitive)
+				{
+					if( str.substring(0, count) == searchTerm )
+					{
+						loggingArray.push(tableValues[i]);
+					}
+				}
+				else
+				{
+					if( str.substring(0, count).toUpperCase() == searchTerm.toUpperCase())
+					{
+						loggingArray.push(tableValues[i]);
+					}	
+				}
+				
+			}
+		}
+		else if(searchType.toUpperCase()  == "ENDSWITH")
+		{
+			var count = searchTerm.length;
+			for(let i = 0; i < tableValues.length; i++)
+			{
+				var str = tableValues[i].subcategory;
+			
+				if(isCaseSensitive)
+				{
+					if(reverseString(str).substring(0, count) == reverseString(searchTerm) )
+					{
+						loggingArray.push(tableValues[i]);
+					}
+				}
+				else
+				{
+					if( reverseString(str).substring(0, count).toUpperCase() == reverseString(searchTerm.toUpperCase()))
+					{
+						loggingArray.push(tableValues[i]);
+					}	
+				}
+				
+			}
+		}
+		else if(searchType.toUpperCase()  == "CONTAINS")
+		{
+			
+			for(let i = 0; i < tableValues.length; i++)
+			{
+				var str = tableValues[i].subcategory;
+			
+				if(isCaseSensitive)
+				{
+					if( str.includes(searchTerm) )
+					{
+						loggingArray.push(tableValues[i]);
+					}
+				}
+				else
+				{
+					if( str.toUpperCase().includes(searchTerm.toUpperCase()))
+					{
+						loggingArray.push(tableValues[i]);
+					}	
+				}
+				
+			}
+		}
+		else
+		{
 
+		}
+	}
+	
+	var html = "<dl>";
+	for(let i = 0; i < loggingArray.length; i ++)
+	{
+		html +=
+		"\n <dt>"+loggingArray[i].product+"</dt>\n"+
+		" <dd>\n"+
+		"   "+loggingArray[i].category+"-"+loggingArray[i].subcategory+"\n"+
+		"   <ul>\n"+
+		"     <li>"+loggingArray[i].price+"</li>\n"+
+		"     <li>"+loggingArray[i].stock+"</li>\n"+
+		"     <li>"+loggingArray[i].sales+"</li>\n"+
+		"     <li>"+loggingArray[i].profit+"</li>\n"+
+		"     <li>"+loggingArray[i].dateAdded+"</li>\n"+
+		"   </ul>\n"+
+		" </dd>";
+	}
+	html = html +"\n</dl>";
+	console.log(html);
+}
+
+function reverseString(string)
+{
+	var split = string.split("");
+	var reversed = split.reverse();
+	var rejoin = reversed.join("");
+	return rejoin;
+}
 
 
 
