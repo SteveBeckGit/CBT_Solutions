@@ -32,7 +32,8 @@ Loop through the Array to log each category, subcategory and total to the consol
 
 var table1 = populateProductSummaryArray();
 var table2 = populateProductDetailArray();
-window.onload = search("E","startsWith", true);
+//set the .onload to function of choice
+window.onload = listCorrectedsubcategorySales();
 
 
 function listProductTotalsBysubcategory()
@@ -56,7 +57,7 @@ function listProductTotalsBysubcategory()
 			for(let j = 0; j < loggingArray.length; j++)
 			{
 				//If an object matches add 1 to the Total
-				if(loggingArray[j].category.includes(tableValues[i].category) && loggingArray[j].subcategory.includes(tableValues[i].subcategory))
+				if(loggingArray[j].category == (tableValues[i].category) && loggingArray[j].subcategory == (tableValues[i].subcategory))
 				{
 					loggingArray[j].Total ++;
 					//Counter increments to indicate that a match was found
@@ -164,14 +165,14 @@ function listTotalSalesBycategory(Category)
 	for(let i = 0; i < products.length; i++)
 	{
 		//Only work with the category which matches the arg
-		if(products[i].category.includes(Category))
+		if(products[i].category == (Category))
 		{
 			var counter = 0;
 			//Loop over the existing totals to sum
 			for(let j = 0; j < loggingArray.length; j++)
 			{
 				//If an object matches add 1 to the Total
-				if(loggingArray[j].subcategory.includes(products[i].subcategory))
+				if(loggingArray[j].subcategory == (products[i].subcategory))
 				{
 					loggingArray[j].sales += products[i].sales;
 					//Counter increments to indicate that a match was found
@@ -218,7 +219,7 @@ function listAdjustedCostBysubcategory(Category, Subcategory, percentInflation)
 	//Populate an object with all required details
 	for(let i = 0; i < products.length; i++)
 	{
-		if(products[i].category.includes(Category) && products[i].subcategory.includes(Subcategory))
+		if(products[i].category == (Category) && products[i].subcategory == (Subcategory))
 		{
 			if(calcObject == null)
 			{
@@ -616,12 +617,37 @@ function search(searchTerm = string, searchType = string, isCaseSensitive = Bool
 {
 	var loggingArray = [];
 	tableValues = table2;
+	// Due to non static Types I have tried to shape the types prior to functioning
+	// If isCaseSensitive is not a Boolean type it will function as if set false
+	if(typeof isCaseSensitive != "boolean" )
+	{
+		isCaseSensitive = false;
+	}
+	//If searchTerm is not a string it will function as if it were empty
+	if(typeof searchTerm != "string" )
+	{
+		searchTerm = "";
+	}
+	//If searchType is not a string it will function as if it were empty
+
+	if(typeof searchType != "string" )
+	{
+		searchType = "";
+	}
+	//If searchTerm is empty use contains as the function
+	
+	if(searchType == "")
+	{
+		searchType = "contains";
+	}
+
 	if(searchTerm == "")
 	{
 		loggingArray = tableValues;
 	}
 	else
 	{
+		//Gets a substring to compare
 		if(searchType.toUpperCase()  == "STARTSWITH")
 		{
 			var count = searchTerm.length;
@@ -646,6 +672,8 @@ function search(searchTerm = string, searchType = string, isCaseSensitive = Bool
 				
 			}
 		}
+
+		//In order to find what a string ends with use fuction reverse to compare the ends of the strings
 		else if(searchType.toUpperCase()  == "ENDSWITH")
 		{
 			var count = searchTerm.length;
@@ -693,11 +721,7 @@ function search(searchTerm = string, searchType = string, isCaseSensitive = Bool
 				}
 				
 			}
-		}
-		else
-		{
-
-		}
+		}		
 	}
 	
 	var html = "<dl>";
