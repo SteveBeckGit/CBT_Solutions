@@ -30,111 +30,84 @@ If you have 2 categories with 2 subcategories each, your function could return
 Loop through the Array to log each category, subcategory and total to the console.
 */
 
-var table1 = populateProductSummaryArray();
-var table2 = populateProductDetailArray();
+
+
 //set the .onload to function of choice
-window.onload = listCorrectedsubcategorySales();
+window.onload = listAdjustedCostBysubcategory("DIY","Electrical",10);
 
 
 function listProductTotalsBysubcategory()
-{	
-	var loggingArray = [];
-	tableValues = table2;
+{		
+	const table = document.getElementsByTagName('table')[1];
+	//Gets the rows
+	let rows = Array.from(table.children[0].children);
 
-	for(let i = 0; i < tableValues.length; i++)
-	{
-		//If the array is empty add first entry
-		if(loggingArray.length == 0)
+	
+	const productDetails = rows.map(i =>({category: i.children[1].textContent,
+								subcategory: i.children[2].textContent,
+							    total: 0 }));
+	productDetails.shift();
+
+	const filteredProducts = productDetails.filter(i => {
+		for(const product of productDetails)
 		{
-			loggingArray.push({category: tableValues[i].category,
-							subcategory: tableValues[i].subcategory,
-							Total : 1});
-		}
-		else
-		{
-			var counter = 0;
-			//Loop over the final array to count entries
-			for(let j = 0; j < loggingArray.length; j++)
+			if(product.category === i.category && product.subcategory === i.subcategory)
 			{
-				//If an object matches add 1 to the Total
-				if(loggingArray[j].category == (tableValues[i].category) && loggingArray[j].subcategory == (tableValues[i].subcategory))
-				{
-					loggingArray[j].Total ++;
-					//Counter increments to indicate that a match was found
-					counter ++;
-				}
-			}
-			//If no matches were found add a new entry
-			if(counter < 1)
-			{
-				loggingArray.push({category: tableValues[i].category,
-				subcategory: tableValues[i].subcategory,
-				Total : 1});
-			}
+				i.total ++;
+			}		
+			
 		}
-	}
+		return true;
+	});
 
-	for(let i = 0; i < loggingArray.length; i++)
-	{
-		console.log(loggingArray[i]);
-	}
-
+	const removeDuplicates = filteredProducts.filter((i, idx, arr) =>{
+		return arr.map(mapObj => JSON.stringify(mapObj)).indexOf(JSON.stringify(i)) === idx;
+		
+	});
+	console.log(removeDuplicates);
+	
 }
+
+
+
+
 
 function populateProductSummaryArray()
 {
 	//Gets the table
-	var table = document.getElementsByTagName('table')[0];
+	const table = document.getElementsByTagName('table')[0];
 	//Gets the rows
-	var rows = table.children[0].children;
+	const rows = table.children[0].children;
 
-	var array=[];
-	//Populate Array with Product Objects
-	for(let i = 1; i < rows.length; i++)
-	{
-		var arr = [];
-		
-			arr = {
-					category: rows[i].children[0].textContent,
-					subcategory: rows[i].children[1].textContent,
-					sales: Number.parseInt(rows[i].children[2].textContent)
-					};
-			
-			array.push(arr);
-		
-	}
+	const productSummaries = rows.map(i =>({
+		category: i.children[0].textContent,
+		subcategory: i.children[1].textContent,
+		sales: Number.parseInt(i.children[2].textContent)
+	}));	
 
-	return array
+	return productSummaries;
 }
 
 function populateProductDetailArray()
 {
 	//Gets the table
-	var table = document.getElementsByTagName('table')[1];
+	const table = document.getElementsByTagName('table')[1];
 	//Gets the rows
-	var rows = table.children[0].children;
+	const rows = Array.from(table.children[0].children);
 
-	var array=[];
-	//Populate Array with Product Objects
-	for(let i = 1; i < rows.length; i++)
-	{
-		var arr = [];
-		
-			arr = {product: rows[i].children[0].textContent,
-					category: rows[i].children[1].textContent,
-					subcategory: rows[i].children[2].textContent,
-					price: Number.parseInt(rows[i].children[3].textContent),
-					stock: Number.parseInt(rows[i].children[4].textContent),
-					sales: Number.parseInt(rows[i].children[5].textContent),
-					profit:Number.parseInt(rows[i].children[6].textContent),
-					dateAdded: rows[i].children[7].textContent
-					};
-			
-			array.push(arr);
-		
-	}
+	
+	const productDetails = rows.map(i =>({product: i.children[0].textContent,
+								category: i.children[1].textContent,
+								subcategory: i.children[2].textContent,
+								price: Number.parseInt(i.children[3].textContent),
+								stock: Number.parseInt(i.children[4].textContent),
+								sales: Number.parseInt(i.children[5].textContent),
+								profit: Number.parseInt(i.children[6].textContent),
+								dateAdded: i.children[7].textContent,}));
 
-	return array
+	
+
+	return productDetails;
 }
 
 /* Exercise 2
@@ -160,37 +133,36 @@ Loop through the Array to log each category, subcategory and total sales to the 
 
 function listTotalSalesBycategory(Category)
 {
-	products = table2;
-	var loggingArray = [];
-	for(let i = 0; i < products.length; i++)
-	{
-		//Only work with the category which matches the arg
-		if(products[i].category == (Category))
+	const table = document.getElementsByTagName('table')[1];
+	//Gets the rows
+	let rows = Array.from(table.children[0].children);
+
+	const productDetails = rows.map(i =>({category: i.children[1].textContent,
+		subcategory: i.children[2].textContent,
+		sales: Number.parseInt(i.children[5].textContent) }));
+
+	productDetails.shift();
+
+	const filteredProducts = productDetails.filter((i) => i.category === Category);
+		
+	
+	const test =  filteredProducts.reduce((total, sales) =>{
+		if(total.subcategory === sales.subcategory)
 		{
-			var counter = 0;
-			//Loop over the existing totals to sum
-			for(let j = 0; j < loggingArray.length; j++)
-			{
-				//If an object matches add 1 to the Total
-				if(loggingArray[j].subcategory == (products[i].subcategory))
-				{
-					loggingArray[j].sales += products[i].sales;
-					//Counter increments to indicate that a match was found
-					counter ++;
-				}
-			}
-			//If no matches were found add a new entry
-			if(counter < 1)
-			{				
-				loggingArray.push({category: products[i].category,
-									subcategory: products[i].subcategory,
-									sales : products[i].sales});							
-			}
+			total.sales += sales.sales;
 		}
-				
-	}
-	console.log(loggingArray);
+		return total;
+	});
+
+		console.log(test);
+	
+
+	const removeDuplicates = filteredProducts.filter((i, idx, arr) =>{
+		return arr.map(mapObj => JSON.stringify(mapObj.subcategory)).indexOf(JSON.stringify(i.subcategory)) === idx;
+		});
+
 }
+
 
 
 /* Exercise 3
@@ -210,41 +182,39 @@ Write the result to the console
 
 function listAdjustedCostBysubcategory(Category, Subcategory, percentInflation)
 {
-	products = table2;
-	var calcObject;
-	var cost;
-	var inflatedCost;
-	var loggingObject;
-	
-	//Populate an object with all required details
-	for(let i = 0; i < products.length; i++)
-	{
-		if(products[i].category == (Category) && products[i].subcategory == (Subcategory))
-		{
-			if(calcObject == null)
-			{
-				calcObject = {category: products[i].category,
-									subcategory: products[i].subcategory,
-									price: products[i].price,
-									stock: products[i].stock,
-									profit: products[i].profit};
-			}
-			else
-			{
-				calcObject.price += products[i].price;
-				calcObject.stock += products[i].stock;
-				calcObject.profit += products[i].profit;
-				
-			}
-		}
-	}
-	//Do calculations
+	const table = document.getElementsByTagName('table')[1];
+	//Gets the rows
+	let rows = Array.from(table.children[0].children);
 
-	cost = calcObject.price - calcObject.profit * calcObject.stock;
-	inflatedCost = cost + (cost * (percentInflation/100));
-	loggingObject = {Category: calcObject.category, Subcategory: calcObject.subcategory, costOfStock: cost, costOfStockWithInflation:inflatedCost};
-	console.log(loggingObject);
+	const productDetails = rows.map(i =>({category: i.children[1].textContent,
+		subcategory: i.children[2].textContent,
+		price: Number.parseInt(i.children[3].textContent),
+		stock: Number.parseInt(i.children[4].textContent),
+		sales:	Number.parseInt(i.children[5].textContent),	
+		profit: Number.parseInt(i.children[6].textContent) }));
+
+	productDetails.shift();
+
+	const filteredProducts = productDetails.filter(i => i.category === Category && i.subcategory === Subcategory);
+	const price = filteredProducts.reduce((total, sum)=>({price:total.price + sum.price}));
+	const profit = filteredProducts.reduce((total, sum)=>({profit:total.profit + sum.profit}));
+	const stock = filteredProducts.reduce((total, sum)=>({stock:total.stock + sum.stock}));
+	const sales = filteredProducts.reduce((total, sum)=>({sales:total.sales + sum.sales}));
+
+	const cost = ((price.price *sales.sales)- profit.profit) / stock.stock;
+	const adjustedCost = cost + (cost * (percentInflation / 100));
+	
+	const newObj = {category: Category,
+					subcategory: Subcategory,
+					costOfStock: cost,
+					costOfStockWithInflation: adjustedCost};	
+
+	console.log(newObj);
+
+	
+	
 }
+
 
 
 /* Exercise 4
@@ -260,14 +230,14 @@ DIY / Accessories reports a sales total, but has no corresponding detail.
 
 function listRedundantSalesTotals()
 {
-	var missingItems = [];
+	let missingItems = [];
 	
-	for(let i = 1; i < table1.length; i++)
+	for(let i = 1; i < populateProductSummaryArray().length; i++)
 	{
-		var matchCount = 0;
-		for(let j = 1; j < table2.length; j++)
+		let matchCount = 0;
+		for(let j = 1; j < populateProductDetailArray().length; j++)
 		{
-			if(table1[i].category == table2[j].category && table1[i].subcategory == table2[j].subcategory )
+			if(populateProductSummaryArray()[i].category === populateProductDetailArray()[j].category && populateProductSummaryArray()[i].subcategory === populateProductDetailArray()[j].subcategory )
 			{
 				matchCount ++;
 				break;
@@ -276,7 +246,7 @@ function listRedundantSalesTotals()
 		}
 		if(matchCount < 1)
 		{
-			missingItems.push(table1[i].category+" / "+table1[i].subcategory+" reports a sales total, but has no corresponding detail.");
+			missingItems.push(populateProductSummaryArray()[i].category+" / "+populateProductSummaryArray()[i].subcategory+" reports a sales total, but has no corresponding detail.");
 		}
 		
 	}
@@ -309,12 +279,12 @@ function listMissingProductLines()
 {
 	
 	
-	for(let i = 1; i < table2.length; i++)
+	for(let i = 1; i < populateProductDetailArray().length; i++)
 	{
-		var matchCount = 0;
-		for(let j = 1; j < table1.length; j++)
+		let matchCount = 0;
+		for(let j = 1; j < populateProductSummaryArray().length; j++)
 		{
-			if(table1[j].category == table2[i].category && table1[j].subcategory == table2[i].subcategory )
+			if(populateProductSummaryArray()[j].category === populateProductDetailArray()[i].category && populateProductSummaryArray()[j].subcategory === populateProductDetailArray()[i].subcategory )
 			{
 				matchCount ++;
 				break;
@@ -323,8 +293,8 @@ function listMissingProductLines()
 		}
 		if(matchCount < 1)
 		{
-			console.log(table2[i].product+","+table2[i].category+","+table2[i].subcategory+","+table2[i].price+","
-						+table2[i].stock+","+table2[i].sales+","+table2[i].profit+","+table2[i].dateAdded);
+			console.log(populateProductDetailArray()[i].product+","+populateProductDetailArray()[i].category+","+populateProductDetailArray()[i].subcategory+","+populateProductDetailArray()[i].price+","
+						+populateProductDetailArray()[i].stock+","+populateProductDetailArray()[i].sales+","+populateProductDetailArray()[i].profit+","+populateProductDetailArray()[i].dateAdded);
 		}
 		
 	}
@@ -357,20 +327,20 @@ countProductDuplicates()
 
 function countProductDuplicates()
 {
-	var loggingArray = [];
-	tableValues = table2;
+	let loggingArray = [];
+	const tableValues = populateProductDetailArray();
 
 	for(let i = 0; i < tableValues.length; i++)
 	{
 		//If the array is empty add first entry
-		if(loggingArray.length == 0)
+		if(loggingArray.length === 0)
 		{
 			loggingArray.push({product: tableValues[i].product,							
 							Total : 1});
 		}
 		else
 		{
-			var counter = 0;
+			let counter = 0;
 			//Loop over the final array to count entries
 			for(let j = 0; j < loggingArray.length; j++)
 			{
@@ -423,17 +393,17 @@ productsToJson("DIY", "Electrical")
 
 function productsToJson(Category, Subcategory)
 {
-	var productDetails = [];
-	for(let i = 0; i < table2.length; i++)
+	let productDetails = [];
+	for(let i = 0; i < populateProductDetailArray().length; i++)
 	{
-		if(table2[i].category.includes(Category) && table2[i].subcategory.includes(Subcategory))
+		if(populateProductDetailArray()[i].category.includes(Category) && populateProductDetailArray()[i].subcategory.includes(Subcategory))
 		{
-			productDetails.push(table2[i])	;
+			productDetails.push(populateProductDetailArray()[i])	;
 		}
 	}
 
 
-		var JSONObj = {productDetails};
+		let JSONObj = {productDetails};
 		console.log(JSON.stringify(JSONObj));
 }
 
@@ -445,7 +415,7 @@ function productsToJson(Category, Subcategory)
 
 
 /* Exercise 8
-You’ll find that the duplicate product names have varying categories and subcategories.  (Yes, we fired the data entry clerk!)
+You’ll find that the duplicate product names have letying categories and subcategories.  (Yes, we fired the data entry clerk!)
 
 For instance:
 Product		|	category	|	subcategory	|	Sales
@@ -470,13 +440,13 @@ Write it to the console.
 
 function listCorrectedsubcategorySales()
 {
-	var loggingArray = [];
-	tableValues = table2;
+	let loggingArray = [];
+	const tableValues = populateProductDetailArray();
 
 	for(let i = 0; i < tableValues.length; i++)
 	{
 		//If the array is empty add first entry
-		if(loggingArray.length == 0)
+		if(loggingArray.length === 0)
 		{
 			loggingArray.push({product: tableValues[i].product,
 				category: tableValues[i].category,	
@@ -487,7 +457,7 @@ function listCorrectedsubcategorySales()
 		}
 		else
 		{
-			var counter = 0;
+			let counter = 0;
 			//Loop over the final array to count entries
 			for(let j = 0; j < loggingArray.length; j++)
 			{
@@ -615,8 +585,8 @@ Searching for subcategories stariting with "Elec" (case sensitive)
 
 function search(searchTerm = string, searchType = string, isCaseSensitive = Boolean )
 {
-	var loggingArray = [];
-	tableValues = table2;
+	let loggingArray = [];
+	const tableValues = populateProductDetailArray();
 	// Due to non static Types I have tried to shape the types prior to functioning
 	// If isCaseSensitive is not a Boolean type it will function as if set false
 	if(typeof isCaseSensitive != "boolean" )
@@ -636,35 +606,35 @@ function search(searchTerm = string, searchType = string, isCaseSensitive = Bool
 	}
 	//If searchTerm is empty use contains as the function
 	
-	if(searchType == "")
+	if(searchType === "")
 	{
 		searchType = "contains";
 	}
 
-	if(searchTerm == "")
+	if(searchTerm === "")
 	{
 		loggingArray = tableValues;
 	}
 	else
 	{
 		//Gets a substring to compare
-		if(searchType.toUpperCase()  == "STARTSWITH")
+		if(searchType.toUpperCase()  === "STARTSWITH")
 		{
-			var count = searchTerm.length;
+			let count = searchTerm.length;
 			for(let i = 0; i < tableValues.length; i++)
 			{
-				var str = tableValues[i].subcategory;
+				let str = tableValues[i].subcategory;
 			
 				if(isCaseSensitive)
 				{
-					if( str.substring(0, count) == searchTerm )
+					if( str.substring(0, count) === searchTerm )
 					{
 						loggingArray.push(tableValues[i]);
 					}
 				}
 				else
 				{
-					if( str.substring(0, count).toUpperCase() == searchTerm.toUpperCase())
+					if( str.substring(0, count).toUpperCase() === searchTerm.toUpperCase())
 					{
 						loggingArray.push(tableValues[i]);
 					}	
@@ -674,23 +644,23 @@ function search(searchTerm = string, searchType = string, isCaseSensitive = Bool
 		}
 
 		//In order to find what a string ends with use fuction reverse to compare the ends of the strings
-		else if(searchType.toUpperCase()  == "ENDSWITH")
+		else if(searchType.toUpperCase()  === "ENDSWITH")
 		{
-			var count = searchTerm.length;
+			let count = searchTerm.length;
 			for(let i = 0; i < tableValues.length; i++)
 			{
-				var str = tableValues[i].subcategory;
+				let str = tableValues[i].subcategory;
 			
 				if(isCaseSensitive)
 				{
-					if(reverseString(str).substring(0, count) == reverseString(searchTerm) )
+					if(reverseString(str).substring(0, count) === reverseString(searchTerm) )
 					{
 						loggingArray.push(tableValues[i]);
 					}
 				}
 				else
 				{
-					if( reverseString(str).substring(0, count).toUpperCase() == reverseString(searchTerm.toUpperCase()))
+					if( reverseString(str).substring(0, count).toUpperCase() === reverseString(searchTerm.toUpperCase()))
 					{
 						loggingArray.push(tableValues[i]);
 					}	
@@ -698,12 +668,12 @@ function search(searchTerm = string, searchType = string, isCaseSensitive = Bool
 				
 			}
 		}
-		else if(searchType.toUpperCase()  == "CONTAINS")
+		else if(searchType.toUpperCase()  === "CONTAINS")
 		{
 			
 			for(let i = 0; i < tableValues.length; i++)
 			{
-				var str = tableValues[i].subcategory;
+				let str = tableValues[i].subcategory;
 			
 				if(isCaseSensitive)
 				{
@@ -724,7 +694,7 @@ function search(searchTerm = string, searchType = string, isCaseSensitive = Bool
 		}		
 	}
 	
-	var html = "<dl>";
+	let html = "<dl>";
 	for(let i = 0; i < loggingArray.length; i ++)
 	{
 		html +=
@@ -744,11 +714,13 @@ function search(searchTerm = string, searchType = string, isCaseSensitive = Bool
 	console.log(html);
 }
 
+
+
 function reverseString(string)
 {
-	var split = string.split("");
-	var reversed = split.reverse();
-	var rejoin = reversed.join("");
+	let split = string.split("");
+	let reversed = split.reverse();
+	let rejoin = reversed.join("");
 	return rejoin;
 }
 
